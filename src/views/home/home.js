@@ -8,8 +8,30 @@ import tools from "../../public/images/tools.png";
 import measure from "../../public/images/measure.png";
 import speechBub from "../../public/images/speech_bubble.png";
 import thinking from "../../public/images/man_thinking.png";
+import { UserSession, AppConfig } from "blockstack";
+
+const appConfig = new AppConfig();
+const userSession = new UserSession({ appConfig: appConfig });
 
 export default class Home extends Component {
+
+   handleSignin = e => {
+    e.preventDefault();
+    userSession.redirectToSignIn();
+  };
+
+  handleSignOut(e) {
+    e.preventDefault();
+    userSession.signUserOut(window.location.origin);
+  }
+
+  componentDidMount() {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(userData => {
+        this.props.history.push("/createActivity");
+      });
+    }
+  }
   render() {
     return (
       <div>
@@ -55,9 +77,15 @@ export default class Home extends Component {
           </div>
         </section>
         <section className="footer">
-          <Link to="/login" className="footer__link footer__link--login">
-            Login
-          </Link>
+         {!userSession.isUserSignedIn() ? (
+            <button className="footer__link footer__link--login" onClick={this.handleSignin}>
+              Login with BlockStack
+            </button>
+          ) : (
+            <button className="footer__link footer__link--login" onClick={this.handleSignOut}>
+              Logout
+            </button>
+          )}
           <div className="footer__bottom-bar">
             <div className="bottom-bar__item">Privacy/Terms</div>
             <div className="bottom-bar__item">Copyright 2019</div>
