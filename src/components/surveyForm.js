@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { UserSession, AppConfig } from "blockstack";
 
 import "./survey.css";
+
+const appConfig = new AppConfig();
+const options = { encrypt: false };
+const userSession = new UserSession({ appConfig: appConfig });
 
 class SurveyForm extends Component {
   state = {
@@ -95,8 +100,12 @@ class SurveyForm extends Component {
     } else {
       data[this.props.month][category] = this.state.answers[category];
     }
-    localStorage.setItem("carbon.data_footprint", JSON.stringify(data));
-    alert();
+    userSession
+      .putFile("carbon.json", JSON.stringify(data), options)
+      .then(() => {
+        localStorage.setItem("carbon.data_footprint", JSON.stringify(data));
+        alert("Data has been submitted");
+      });
   };
 
   render() {

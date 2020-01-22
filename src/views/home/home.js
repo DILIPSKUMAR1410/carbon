@@ -14,8 +14,7 @@ const appConfig = new AppConfig();
 const userSession = new UserSession({ appConfig: appConfig });
 
 export default class Home extends Component {
-
-   handleSignin = e => {
+  handleSignin = e => {
     e.preventDefault();
     userSession.redirectToSignIn();
   };
@@ -28,10 +27,11 @@ export default class Home extends Component {
   componentDidMount() {
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(userData => {
-        this.props.history.push("/createActivity");
+        this.props.history.push("/dashboard");
       });
     }
   }
+
   render() {
     return (
       <div>
@@ -77,12 +77,18 @@ export default class Home extends Component {
           </div>
         </section>
         <section className="footer">
-         {!userSession.isUserSignedIn() ? (
-            <button className="footer__link footer__link--login" onClick={this.handleSignin}>
+          {!userSession.isUserSignedIn() ? (
+            <button
+              className="footer__link footer__link--login"
+              onClick={this.handleSignin}
+            >
               Login with BlockStack
             </button>
           ) : (
-            <button className="footer__link footer__link--login" onClick={this.handleSignOut}>
+            <button
+              className="footer__link footer__link--login"
+              onClick={this.handleSignOut}
+            >
               Logout
             </button>
           )}

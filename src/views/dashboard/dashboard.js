@@ -5,10 +5,29 @@ import NavBar from "../../components/navbar";
 import track from "../../public/images/track.png";
 import measure from "../../public/images/measure.png";
 import mitigation from "../../public/images/mitigation.png";
+import { UserSession, AppConfig } from "blockstack";
 
 import "./dashboard.css";
 
+const appConfig = new AppConfig();
+const options = { decrypt: false };
+const userSession = new UserSession({ appConfig: appConfig });
+
 class Dashboard extends Component {
+  async componentDidMount() {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(userData => {
+        this.setState({ userData: userData });
+      });
+    }
+    try {
+      const content = await userSession.getFile("carbon.json", options);
+      localStorage.setItem("carbon.data_footprint", content);
+    } catch (err) {
+      console.error("Error" + err);
+    }
+  }
+
   render() {
     return (
       <div className="dashboard">
