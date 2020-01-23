@@ -1,7 +1,7 @@
 .survey__form {
   box-sizing: border-box;
   height: 50vh;
-  width: 50vw;
+  width: 80vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .form__input {
@@ -20,6 +20,8 @@
   border: 1px currentColor solid;
   padding: 0.5rem 0.3rem;
   border-radius: 5px;
+  display: inline-block;
+  margin-right: auto;
 }
 
 .submit__btn {
@@ -30,6 +32,7 @@
   border: 1px currentColor solid;
   border-radius: 5px;
   cursor: pointer;
+  align-self: center;
 }
 
 @media screen and (max-width: 600px) {

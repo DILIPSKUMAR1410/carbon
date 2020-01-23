@@ -4,7 +4,7 @@ import NavBar from "../../components/navbar";
 
 import household from "../../public/images/household.png";
 import car from "../../public/images/car.png";
-// import electronics from "../../public/images/electronics.png";
+import tv from "../../public/images/tv.png";
 import flight from "../../public/images/flight.png";
 import food from "../../public/images/food.png";
 import transport from "../../public/images/transport.png";
@@ -15,7 +15,8 @@ class Measure extends Component {
   state = {
     activeOption: null,
     showModal: false,
-    month: "January"
+    month: "January",
+    year: 2020
   };
 
   showModal = target => {
@@ -41,6 +42,11 @@ class Measure extends Component {
       month: e.target.value
     });
   };
+  onChangeHandler2 = e => {
+    this.setState({
+      year: e.target.value
+    });
+  };
 
   render() {
     return (
@@ -48,8 +54,7 @@ class Measure extends Component {
         <NavBar />
         <div>
           <p>
-            Please choose a particular month for entering carbon mitigation
-            measures
+            Please choose a particular month for entering carbon footprint data.
           </p>
 
           <select className="select-css" onChange={this.onChangeHandler}>
@@ -67,6 +72,12 @@ class Measure extends Component {
             <option>November</option>
             <option>December</option>
           </select>
+          <input
+            className="input__year"
+            onChange={this.onChangeHandler2}
+            value={this.state.year}
+            placeholder="Year"
+          />
         </div>
         <div className="measure__choices">
           <div
@@ -93,7 +104,7 @@ class Measure extends Component {
               this.onClickHandler("electronics");
             }}
           >
-            <img className="option__image" src={car} alt="car" />
+            <img className="option__image" src={tv} alt="car" />
             <p className="option__text">Electronics</p>
           </div>
           <div
@@ -131,6 +142,7 @@ class Measure extends Component {
           source="measure"
           category={this.state.activeOption}
           month={this.state.month}
+          year={this.state.year}
         />
       </div>
     );

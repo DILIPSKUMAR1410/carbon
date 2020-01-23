@@ -7,6 +7,8 @@ import Measure from "./views/measure/measure";
 import Mitigation from "./views/mitigation/mitigation";
 import Track from "./views/track/track";
 import Login from "./views/login/login";
+import Explore from "./views/explore/explore";
+import LineChart from "./components/linechart";
 
 import "./App.css";
 
@@ -20,6 +22,7 @@ function App() {
         <Route path="/measure" component={Measure} />
         <Route path="/mitigation" component={Mitigation} />
         <Route path="/track" component={Track} />
+        <Route path="/explore" component={Explore} />
       </div>
     </Router>
   );

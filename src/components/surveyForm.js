@@ -50,10 +50,10 @@ class SurveyForm extends Component {
 
   questions = {
     household: [
-      "No. Of persons in your house: ",
+      "No. of persons in your house: ",
       "Electricity consumption in kwH: ",
       "LPG consumption in litres: ",
-      "Wood in tonnes: "
+      "Wood consumption in tonnes: "
     ],
     flight: ["Class of Travel(Economy/Business): ", "Total Miles: "],
     transport: [
@@ -67,15 +67,13 @@ class SurveyForm extends Component {
       "Total Miles: "
     ],
     electronics: ["Amount of Electronics purchased in US$: "],
-    food: ["Amount of Red Meat consumed in KG: "],
+    food: ["Amount of Red Meat consumed in Kg: "],
     cycle: ["No. of miles cycled instead of a car: "],
     tree: ["No. of Saplings planted: "],
     sharing: ["No. of miles car pooled instead of driving alone: "]
   };
 
   onChangeHandler = e => {
-    let value = e.target.value;
-    let name = e.target.name;
     let cat = this.state.answers[this.props.category];
     cat[e.target.name] = e.target.value;
     this.setState({
@@ -88,17 +86,19 @@ class SurveyForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { category, source } = this.props;
+    const { category } = this.props;
     let data =
       JSON.parse(localStorage.getItem("carbon.data_footprint")) || null;
     if (!data)
       data = {
-        [this.props.month]: null
+        [this.props.month + "_" + this.props.year]: null
       };
-    if (!data[this.props.month]) {
-      data[this.props.month] = this.state.answers;
+    if (!data[this.props.month + "_" + this.props.year]) {
+      data[this.props.month + "_" + this.props.year] = this.state.answers;
     } else {
-      data[this.props.month][category] = this.state.answers[category];
+      data[this.props.month + "_" + this.props.year][
+        category
+      ] = this.state.answers[category];
     }
     userSession
       .putFile("carbon.json", JSON.stringify(data), options)
@@ -113,7 +113,9 @@ class SurveyForm extends Component {
     const inputs = questions.map((item, index) => {
       return (
         <div>
-          <label htmlFor={`q${index + 1}`}>{questions[index]}</label>
+          <label className="form__label" htmlFor={`q${index + 1}`}>
+            {questions[index]}
+          </label>
           <input
             name={`q${index + 1}`}
             placeholder="Enter your answer"

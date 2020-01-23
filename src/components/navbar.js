@@ -6,9 +6,19 @@ import { Link } from "react-router-dom";
 import logo from "../public/images/green_tea.png";
 
 class NavBar extends Component {
-  state = {
-    username: "User"
-  };
+  constructor(props) {
+    super(props);
+    let loggedIn = true;
+    if (this.props && this.props.loggedIn === false) {
+      loggedIn = this.props.loggedIn;
+    }
+    this.state = {
+      loggedIn: loggedIn,
+      username: "User"
+    };
+    console.log(this.state);
+  }
+
   render() {
     return (
       <nav className="navbar" style={styles.navStyle}>
@@ -20,8 +30,9 @@ class NavBar extends Component {
             style={styles.logoStyle}
           />
         </Link>
+        <span style={styles.navBrandStyle}>My Carbon Footprint</span>
         <div className="navbar__user" style={styles.navTextStyle}>
-          Hello {this.state.username}
+          {this.state.loggedIn ? `Hello ${this.state.username}!` : ""}
         </div>
       </nav>
     );
@@ -47,6 +58,12 @@ const styles = {
   },
 
   navTextStyle: {
+    fontSize: "1.5em",
+    color: "#3fa43f"
+  },
+  navBrandStyle: {
+    marginRight: "auto",
+    marginLeft: "1rem",
     fontSize: "1.5em",
     color: "#3fa43f"
   }

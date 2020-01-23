@@ -4,6 +4,7 @@ import NavBar from "../../components/navbar";
 import Modal from "../../components/modal";
 
 import bicycle from "../../public/images/bicycle.png";
+import sprout from "../../public/images/sprout.png";
 import sharing from "../../public/images/sharing.png";
 
 import "./mitigation.css";
@@ -12,7 +13,8 @@ class Mitigation extends Component {
   state = {
     activeOption: null,
     showModal: false,
-    month: "January"
+    month: "January",
+    year: 2020
   };
 
   header = "Carbon Footprint";
@@ -45,6 +47,11 @@ class Mitigation extends Component {
       month: e.target.value
     });
   };
+  onChangeHandler2 = e => {
+    this.setState({
+      year: e.target.value
+    });
+  };
 
   render() {
     return (
@@ -70,6 +77,12 @@ class Mitigation extends Component {
             <option>November</option>
             <option>December</option>
           </select>
+          <input
+            class="input__year"
+            onChange={this.onChangeHandler2}
+            value={this.state.year}
+            placeholder="Year"
+          />
         </div>
         <div className="mitigation__choices">
           <div
@@ -88,7 +101,7 @@ class Mitigation extends Component {
             className="mitigation__option"
             onClick={() => this.onClickHandler("tree")}
           >
-            <img className="option__image" src={bicycle} alt="" />
+            <img className="option__image" src={sprout} alt="" />
           </div>
         </div>
         <Modal
@@ -97,6 +110,7 @@ class Mitigation extends Component {
           category={this.state.activeOption}
           source="mitigation"
           month={this.state.month}
+          year={this.state.year}
         />
       </div>
     );

@@ -9,11 +9,12 @@ import "./track.css";
 class Track extends Component {
   state = {
     activeOption: null,
-    showModal: false
+    showModal: false,
+    month: "January",
+    year: 2020
   };
 
   showModal = target => {
-    console.log("show");
     this.setState({
       showModal: true,
       activeOption: target
@@ -21,7 +22,6 @@ class Track extends Component {
   };
 
   hideModal = () => {
-    console.log("hide");
     this.setState({
       activeOption: null,
       showModal: false
@@ -31,6 +31,16 @@ class Track extends Component {
   onClickHandler = target => {
     this.showModal(target);
   };
+  onChangeHandler = e => {
+    this.setState({
+      month: e.target.value
+    });
+  };
+  onChangeHandler2 = e => {
+    this.setState({
+      year: e.target.value
+    });
+  };
 
   render() {
     return (
@@ -38,10 +48,9 @@ class Track extends Component {
         <NavBar />
         <div>
           <p>
-            Please choose a particular month for entering carbon mitigation
-            measures
+            Please choose a particular month for viewing carbon footprint data.
           </p>
-          <select class="select-css">
+          <select className="select-css" onChange={this.onChangeHandler}>
             <option>Select Month</option>
             <option>January</option>
             <option>February</option>
@@ -56,6 +65,12 @@ class Track extends Component {
             <option>November</option>
             <option>December</option>
           </select>
+          <input
+            className="input__year"
+            onChange={this.onChangeHandler2}
+            value={this.state.year}
+            placeholder="Year"
+          />
         </div>
         <div className="track__choices">
           <div
@@ -80,7 +95,7 @@ class Track extends Component {
               this.onClickHandler("chart");
             }}
           >
-            Competitive Chart
+            Comparative Chart
           </div>
         </div>
         <Modal
@@ -88,6 +103,8 @@ class Track extends Component {
           close={this.hideModal}
           source="track"
           category={this.state.activeOption}
+          month={this.state.month}
+          year={this.state.year}
         />
       </div>
     );
