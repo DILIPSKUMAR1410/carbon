@@ -9,10 +9,10 @@ import measure from "../../public/images/measure.png";
 import speechBub from "../../public/images/speech_bubble.png";
 import thinking from "../../public/images/man_thinking.png";
 import { UserSession, AppConfig } from "blockstack";
+import workflow from "../../public/images/workflow.png";
 
 const appConfig = new AppConfig();
 const userSession = new UserSession({ appConfig: appConfig });
-import workflow from "../../public/images/workflow.png";
 
 export default class Home extends Component {
   handleSignin = e => {
