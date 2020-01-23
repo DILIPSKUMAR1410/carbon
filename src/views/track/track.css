@@ -63,6 +63,22 @@
   font-weight: normal;
 }
 
+.input__year {
+  all: unset;
+  margin-top: 1rem;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid green;
+  padding: 0.4rem;
+  transition: box-shadow 150ms ease-in-out;
+}
+
+.input__year:focus {
+  box-shadow: 0 0 8px lightgreen;
+}
+
+
 @media screen and (max-width: 600px) {
   .track__choices {
     margin-top: 5rem;

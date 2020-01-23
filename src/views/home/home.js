@@ -12,6 +12,7 @@ import { UserSession, AppConfig } from "blockstack";
 
 const appConfig = new AppConfig();
 const userSession = new UserSession({ appConfig: appConfig });
+import workflow from "../../public/images/workflow.png";
 
 export default class Home extends Component {
   handleSignin = e => {
@@ -35,7 +36,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar loggedIn={false} />
         <section className="landing">
           <div className="landing__container">
             <img
@@ -55,8 +56,9 @@ export default class Home extends Component {
           </div>
         </section>
         <section className="process">
-          <h1 className="process__title">The Creative Design Process</h1>
-          <div className="process__step process__step--dark">
+          <h1 className="process__title">How it works?</h1>
+          <img src={workflow} alt="" />
+          {/* <div className="process__step process__step--dark">
             <img className="step__img" src={measure} />
             <p className="step__text"> Step 1: Track your journey. </p>
           </div>
@@ -74,7 +76,7 @@ export default class Home extends Component {
           <div className="process__step process__step--light">
             <img className="step__img" src={tools} />
             <p className="step__text"> Step 4: Change and update. </p>
-          </div>
+          </div> */}
         </section>
         <section className="footer">
           {!userSession.isUserSignedIn() ? (
@@ -93,7 +95,7 @@ export default class Home extends Component {
             </button>
           )}
           <div className="footer__bottom-bar">
-            <div className="bottom-bar__item">Privacy/Terms</div>
+            {/* <div className="bottom-bar__item">Privacy/Terms</div> */}
             <div className="bottom-bar__item">Copyright 2019</div>
           </div>
         </section>

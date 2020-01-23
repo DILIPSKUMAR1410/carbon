@@ -40,12 +40,26 @@
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
 }
+
+.input__year {
+  all: unset;
+  margin-top: 1rem;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid green;
+  padding: 0.4rem;
+  transition: box-shadow 150ms ease-in-out;
+}
+
 .select-css::-ms-expand {
   display: none;
 }
+
 .select-css:hover {
   border-color: #888;
 }
+
 .select-css:focus {
   border-color: #aaa;
   box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
@@ -53,6 +67,7 @@
   color: #222;
   outline: none;
 }
+
 .select-css option {
   font-weight: normal;
 }
