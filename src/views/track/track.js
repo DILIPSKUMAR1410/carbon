@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-// import "bootstrap/dist/css/bootstrap.css";
 
 import Modal from "../../components/modal";
 import NavBar from "../../components/navbar";

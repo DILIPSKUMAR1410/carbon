@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "../../components/modal";
 import NavBar from "../../components/navbar";
+import { Link } from "react-router-dom";
 
 import household from "../../public/images/household.png";
 import car from "../../public/images/car.png";
@@ -52,7 +53,10 @@ class Measure extends Component {
     return (
       <div className="measure">
         <NavBar />
-        <div>
+        <div className='measure-container'>
+          <Link to="/mitigation" className="measure__link">
+            Measure Carbon Mitigation
+          </Link>
           <p>
             Please choose a particular month for entering carbon footprint data.
           </p>

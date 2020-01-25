@@ -19,7 +19,13 @@ class StatChart extends Component {
           { name: "Sharing", value: sharing.q1 * 0.00825 },
           { name: "Sapplings", value: tree.q1 * 0.0015 }
         ];
-        return <PieChart month={this.props.month} data={data} />;
+        return (
+          <PieChart
+            source={"mitigation"}
+            month={this.props.month}
+            data={data}
+          />
+        );
       } else {
         const { household, car, electronics, flight, food, transport } = fp[
           this.props.month + "_" + this.props.year
@@ -48,7 +54,9 @@ class StatChart extends Component {
               transport.q3 * 0.00005
           }
         ];
-        return <PieChart month={this.props.month} data={data} />;
+        return (
+          <PieChart source={"footprint"} month={this.props.month} data={data} />
+        );
       }
     }
   }

@@ -7,7 +7,7 @@ class PieChart extends Component {
   }
 
   drawPie = (selector, data) => {
-    const size = 600;
+    const size = 800;
     const fourth = size / 4;
     const half = size / 2;
     const labelOffset = fourth * 1.4;
@@ -23,10 +23,23 @@ class PieChart extends Component {
       .append("g")
       .attr("transform", `translate(${half}, ${half})`);
 
+    const footprintColors = [
+      "#616161",
+      "#9E9E9E",
+      "#757575",
+      "#212121",
+      "#607D8B",
+      "#BDBDBD"
+    ];
+    const mitigationColors = ["#689F38", "#8BC34A", "#4CAF50", "#8BC34A"];
+
     const color = d3
       .scaleOrdinal()
       .domain(data.map(d => d.name))
-      .range(d3.schemeCategory10);
+      .range(
+        this.props.source === "footprint" ? footprintColors : mitigationColors
+      );
+
     const pie = d3
       .pie()
       .sort(null)
@@ -74,9 +87,7 @@ class PieChart extends Component {
       .append("tspan")
       .attr("y", "0.6em")
       .attr("x", 0)
-      .text(
-        d => `${d.data.value} (${Math.round((d.data.value / total) * 100)}%)`
-      );
+      .text(d => `${Math.round((d.data.value / total) * 100)}%`);
   };
 
   render() {
