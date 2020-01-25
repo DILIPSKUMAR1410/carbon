@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import NavBar from "../../components/navbar";
 import Modal from "../../components/modal";
-
 import bicycle from "../../public/images/bicycle.png";
 import sprout from "../../public/images/sprout.png";
 import sharing from "../../public/images/sharing.png";
@@ -57,7 +57,10 @@ class Mitigation extends Component {
     return (
       <div className="mitigation">
         <NavBar />
-        <div>
+        <div className="mitigation-container">
+          <Link to="/measure" className="mitigation__link">
+            Measure Carbon Footprint
+          </Link>
           <p>
             Please choose a particular month for entering carbon mitigation
             measures

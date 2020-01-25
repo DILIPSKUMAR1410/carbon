@@ -8,7 +8,6 @@ import Mitigation from "./views/mitigation/mitigation";
 import Track from "./views/track/track";
 import Login from "./views/login/login";
 import Explore from "./views/explore/explore";
-import LineChart from "./components/linechart";
 
 import "./App.css";
 

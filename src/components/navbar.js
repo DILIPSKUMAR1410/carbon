@@ -2,8 +2,10 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import "./navbar.css";
 import logo from "../public/images/green_tea.png";
+import { UserSession, AppConfig } from "blockstack";
+const appConfig = new AppConfig();
+const userSession = new UserSession({ appConfig: appConfig });
 
 class NavBar extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class NavBar extends Component {
     }
     this.state = {
       loggedIn: loggedIn,
-      username: "User"
+      username: loggedIn ? userSession.loadUserData().username : ""
     };
     console.log(this.state);
   }
@@ -31,8 +33,24 @@ class NavBar extends Component {
           />
         </Link>
         <span style={styles.navBrandStyle}>My Carbon Footprint</span>
-        <div className="navbar__user" style={styles.navTextStyle}>
-          {this.state.loggedIn ? `Hello ${this.state.username}!` : ""}
+        {!this.state.loggedIn && userSession.isUserSignedIn() ? (
+          <Link to="/dashboard" style={{ color: "green" }}>
+            Dashboard
+          </Link>
+        ) : (
+          ""
+        )}
+        <div className="navbar__user" style={styles.navUserTextStyle}>
+          {this.state.loggedIn ? (
+            <span>
+              Hello{" "}
+              <Link to="/dashboard" style={{ fontWeight: "bold" }}>
+                {this.state.username}!
+              </Link>
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       </nav>
     );
@@ -59,6 +77,10 @@ const styles = {
 
   navTextStyle: {
     fontSize: "1.5em",
+    color: "#3fa43f"
+  },
+  navUserTextStyle: {
+    fontSize: "1em",
     color: "#3fa43f"
   },
   navBrandStyle: {
