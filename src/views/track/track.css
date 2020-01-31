@@ -78,6 +78,33 @@
   box-shadow: 0 0 8px lightgreen;
 }
 
+.measure__link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  color: green;
+  border: 1px solid green;
+  background-color: #fff;
+  transition: all 150ms ease-in-out;
+}
+
+.measure__link:hover,
+.track__link:hover {
+  background-color: green;
+  color: white;
+}
+
+.track__link {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  color: green;
+  border: 1px solid green;
+  background-color: #fff;
+  transition: all 150ms ease-in-out;
+}
 
 @media screen and (max-width: 600px) {
   .track__choices {
@@ -87,4 +114,8 @@
   .track__option {
     margin-top: 2rem;
   }
+}
+
+.track-container {
+  position: relative;
 }

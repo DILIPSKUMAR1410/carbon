@@ -1,5 +1,3 @@
-// Navbar/Topbar
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "../public/images/green_tea.png";
@@ -21,6 +19,11 @@ class NavBar extends Component {
     console.log(this.state);
   }
 
+  handleSignOut = e => {
+    e.preventDefault();
+    userSession.signUserOut(window.location.origin);
+  };
+
   render() {
     return (
       <nav className="navbar" style={styles.navStyle}>
@@ -34,9 +37,17 @@ class NavBar extends Component {
         </Link>
         <span style={styles.navBrandStyle}>My Carbon Footprint</span>
         {!this.state.loggedIn && userSession.isUserSignedIn() ? (
-          <Link to="/dashboard" style={{ color: "green" }}>
-            Dashboard
-          </Link>
+          <React.Fragment>
+            <Link to="/dashboard" style={{ color: "green", margin: "1rem" }}>
+              Dashboard
+            </Link>
+            <Link to="/measure" style={{ color: "green" }}>
+              Measure
+            </Link>
+            <Link to="/track" style={{ color: "green", margin: "1rem" }}>
+              Track
+            </Link>
+          </React.Fragment>
         ) : (
           ""
         )}
@@ -47,6 +58,19 @@ class NavBar extends Component {
               <Link to="/dashboard" style={{ fontWeight: "bold" }}>
                 {this.state.username}!
               </Link>
+              <span
+                className="nav__logout"
+                style={{
+                  color: "green",
+                  margin: "1rem",
+                  border: "1px solid green",
+                  padding: ".5rem 1rem",
+                  cursor: "pointer"
+                }}
+                onClick={this.handleSignOut}
+              >
+                Logout
+              </span>
             </span>
           ) : (
             ""

@@ -92,8 +92,8 @@ class LineChart extends Component {
       .domain([0, d3.max(data[1].values, d => d.price)])
       .range([height - margin, 0]);
 
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
-
+    // var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var color = d3.scaleOrdinal(["green", "grey"]);
     /* Add SVG */
     var svg = d3
       .select("#chart")
