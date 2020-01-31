@@ -7,7 +7,7 @@ class PieChart extends Component {
   }
 
   drawPie = (selector, data) => {
-    const size = 800;
+    const size = 1000;
     const fourth = size / 4;
     const half = size / 2;
     const labelOffset = fourth * 1.4;

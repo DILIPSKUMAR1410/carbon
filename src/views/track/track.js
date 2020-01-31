@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import Modal from "../../components/modal";
 import NavBar from "../../components/navbar";
 import "./track.css";
@@ -44,66 +44,75 @@ class Track extends Component {
     return (
       <div className="track">
         <NavBar />
-        <div>
-          <p>
-            Please choose a particular month for viewing carbon footprint data.
-          </p>
-          <select className="select-css" onChange={this.onChangeHandler}>
-            <option>Select Month</option>
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <option>April</option>
-            <option>May</option>
-            <option>June</option>
-            <option>July</option>
-            <option>August</option>
-            <option>September</option>
-            <option>October</option>
-            <option>November</option>
-            <option>December</option>
-          </select>
-          <input
-            className="input__year"
-            onChange={this.onChangeHandler2}
-            value={this.state.year}
-            placeholder="Year"
+        <div className="track-container">
+          <Link to="/measure" className="measure__link">
+            Measure Carbon Mitigation
+          </Link>
+          <Link to="/measure" className="track__link">
+            Measure Carbon Footprint
+          </Link>
+          <div>
+            <p>
+              Please choose a particular month for viewing carbon footprint
+              data.
+            </p>
+            <select className="select-css" onChange={this.onChangeHandler}>
+              <option>Select Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <input
+              className="input__year"
+              onChange={this.onChangeHandler2}
+              value={this.state.year}
+              placeholder="Year"
+            />
+          </div>
+          <div className="track__choices">
+            <div
+              className="track__option"
+              onClick={() => {
+                this.onClickHandler("footprint");
+              }}
+            >
+              Carbon Footprint
+            </div>
+            <div
+              className="track__option"
+              onClick={() => {
+                this.onClickHandler("mitigated");
+              }}
+            >
+              Carbon Mitigated
+            </div>
+            <div
+              className="track__option"
+              onClick={() => {
+                this.onClickHandler("chart");
+              }}
+            >
+              Comparative Chart
+            </div>
+          </div>
+          <Modal
+            show={this.state.showModal}
+            close={this.hideModal}
+            source="track"
+            category={this.state.activeOption}
+            month={this.state.month}
+            year={this.state.year}
           />
         </div>
-        <div className="track__choices">
-          <div
-            className="track__option"
-            onClick={() => {
-              this.onClickHandler("footprint");
-            }}
-          >
-            Carbon Footprint
-          </div>
-          <div
-            className="track__option"
-            onClick={() => {
-              this.onClickHandler("mitigated");
-            }}
-          >
-            Carbon Mitigated
-          </div>
-          <div
-            className="track__option"
-            onClick={() => {
-              this.onClickHandler("chart");
-            }}
-          >
-            Comparative Chart
-          </div>
-        </div>
-        <Modal
-          show={this.state.showModal}
-          close={this.hideModal}
-          source="track"
-          category={this.state.activeOption}
-          month={this.state.month}
-          year={this.state.year}
-        />
       </div>
     );
   }

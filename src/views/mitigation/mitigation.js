@@ -61,6 +61,10 @@ class Mitigation extends Component {
           <Link to="/measure" className="mitigation__link">
             Measure Carbon Footprint
           </Link>
+
+          <Link to="/track" className="track__link">
+            Track Carbon Footprint
+          </Link>
           <p>
             Please choose a particular month for entering carbon mitigation
             measures

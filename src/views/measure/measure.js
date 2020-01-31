@@ -53,9 +53,12 @@ class Measure extends Component {
     return (
       <div className="measure">
         <NavBar />
-        <div className='measure-container'>
+        <div className="measure-container">
           <Link to="/mitigation" className="measure__link">
             Measure Carbon Mitigation
+          </Link>
+          <Link to="/track" className="track__link">
+            Track Footprint
           </Link>
           <p>
             Please choose a particular month for entering carbon footprint data.

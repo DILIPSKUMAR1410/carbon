@@ -30,9 +30,21 @@
   transition: all 150ms ease-in-out;
 }
 
-.measure__link:hover {
+.measure__link:hover,
+.track__link:hover {
   background-color: green;
   color: white;
+}
+
+.track__link {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  color: green;
+  border: 1px solid green;
+  background-color: #fff;
+  transition: all 150ms ease-in-out;
 }
 
 .select-css {
