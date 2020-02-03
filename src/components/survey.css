@@ -1,7 +1,7 @@
 .survey__form {
   box-sizing: border-box;
   height: 50vh;
-  width: 80vw;
+  width: 60vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

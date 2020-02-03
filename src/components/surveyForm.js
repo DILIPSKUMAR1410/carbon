@@ -103,8 +103,8 @@ class SurveyForm extends Component {
     userSession
       .putFile("carbon.json", JSON.stringify(data), options)
       .then(() => {
-        localStorage.setItem("carbon.data_footprint", JSON.stringify(data));
         alert("Data Submitted, please close and move to the next item.");
+        localStorage.setItem("carbon.data_footprint", JSON.stringify(data));
       });
   };
 

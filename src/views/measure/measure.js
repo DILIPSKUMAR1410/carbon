@@ -16,11 +16,15 @@ class Measure extends Component {
   state = {
     activeOption: null,
     showModal: false,
-    month: "January",
-    year: 2020
+    month: "",
+    year: null
   };
 
   showModal = target => {
+    if (this.state.month === "" || this.state.year === null) {
+      alert("Please choose a month and year before entering the data.");
+      return;
+    }
     this.setState({
       showModal: true,
       activeOption: target
